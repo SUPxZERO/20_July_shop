@@ -1,0 +1,22 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: 20july_shop_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: july_admin
+      POSTGRES_PASSWORD: july_secret_2024
+      POSTGRES_DB: twenty_july_shop
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - shop_network
+
+volumes:
+  postgres_data:
+
+networks:
+  shop_network:
+    driver: bridge

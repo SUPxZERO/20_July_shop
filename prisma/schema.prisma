@@ -1,0 +1,67 @@
+// This is the 20-July SHOP production schema
+// Models: AdminUser, Category, Product, ProductVariant
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─── Admin Authentication ───────────────────────────────────
+
+model AdminUser {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String   // bcrypt hashed
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ─── Product Catalog ────────────────────────────────────────
+
+model Category {
+  id          String    @id @default(cuid())
+  name        String    @unique
+  slug        String    @unique
+  description String?
+  imageUrl    String?
+  products    Product[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Product {
+  id          String           @id @default(cuid())
+  name        String
+  slug        String           @unique
+  description String?          @db.Text
+  imageUrl    String?
+  categoryId  String
+  category    Category         @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  variants    ProductVariant[]
+  featured    Boolean          @default(false)
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  @@index([categoryId])
+  @@index([featured])
+}
+
+model ProductVariant {
+  id        String  @id @default(cuid())
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  size      String? // e.g., "XS", "S", "M", "L", "XL", "Free Size"
+  color     String? // e.g., "Blush Pink", "Ivory", "Midnight Purple"
+  material  String? // e.g., "Cotton", "Silk", "Polyester Blend"
+  sku       String? @unique
+  inStock   Boolean @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([productId])
+}
