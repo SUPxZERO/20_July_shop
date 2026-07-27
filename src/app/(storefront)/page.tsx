@@ -21,18 +21,18 @@ export default async function HomePage() {
         {/* Subtle noise texture */}
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] mix-blend-overlay pointer-events-none"></div>
         
-        <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center relative z-10">
           
           {/* Left Column: Text Content */}
           <div className="flex flex-col items-start text-left max-w-xl">
-            <div className="inline-flex items-center gap-3 py-2 px-5 mb-8 rounded-full bg-white/60 border border-brand-pink-200 backdrop-blur-md shadow-sm">
+            <div className="inline-flex items-center gap-2 sm:gap-3 py-1.5 px-4 sm:py-2 sm:px-5 mb-6 sm:mb-8 rounded-full bg-white/60 border border-brand-pink-200 backdrop-blur-md shadow-sm">
               <span className="w-2 h-2 rounded-full bg-brand-pink-500 animate-pulse"></span>
               <span className="text-[10px] font-bold tracking-[0.2em] text-brand-pink-600 uppercase">
                 Timeless Elegance
               </span>
             </div>
             
-            <h1 className="font-heading text-6xl md:text-7xl lg:text-8xl text-brand-charcoal mb-6 leading-[1.05] tracking-tight">
+            <h1 className="font-heading text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-brand-charcoal mb-4 sm:mb-6 leading-[1.05] tracking-tight">
               Elegance in <br />
               <span className="text-brand-pink-500 italic relative inline-block mt-2">
                 Every Thread
@@ -42,21 +42,21 @@ export default async function HomePage() {
               </span>
             </h1>
             
-            <p className="text-lg md:text-xl text-brand-charcoal/70 mb-10 font-light leading-relaxed">
+            <p className="text-sm sm:text-lg md:text-xl text-brand-charcoal/70 mb-6 sm:mb-10 font-light leading-relaxed">
               Discover a curated collection of premium women's fashion designed to elevate your everyday style with effortless sophistication.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
               <Link 
                 href="/shop" 
-                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand-charcoal text-white rounded-full font-medium tracking-wide hover:bg-black transition-all duration-500 shadow-2xl shadow-brand-charcoal/20 hover:shadow-brand-charcoal/40 hover:-translate-y-1"
+                className="group inline-flex items-center justify-center gap-2 sm:gap-3 px-6 py-3 sm:px-8 sm:py-4 bg-brand-charcoal text-white rounded-full text-sm sm:text-base font-medium tracking-wide hover:bg-black transition-all duration-500 shadow-xl sm:shadow-2xl shadow-brand-charcoal/20 hover:shadow-brand-charcoal/40 hover:-translate-y-1"
               >
-                Explore Collection 
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <span>Explore Collection</span> 
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link 
                 href="/shop?category=dresses" 
-                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white/50 backdrop-blur-md border border-brand-pink-200 text-brand-charcoal rounded-full font-medium tracking-wide hover:bg-white hover:border-brand-pink-300 transition-all duration-300"
+                className="inline-flex items-center justify-center gap-2 sm:gap-3 px-6 py-3 sm:px-8 sm:py-4 bg-white/50 backdrop-blur-md border border-brand-pink-200 text-brand-charcoal rounded-full text-sm sm:text-base font-medium tracking-wide hover:bg-white hover:border-brand-pink-300 transition-all duration-300"
               >
                 Shop Dresses
               </Link>
@@ -64,7 +64,7 @@ export default async function HomePage() {
           </div>
 
           {/* Right Column: Stylized Image Component */}
-          <div className="relative w-full h-[600px] lg:h-[700px] flex items-center justify-center">
+          <div className="relative w-full h-[320px] sm:h-[500px] md:h-[600px] lg:h-[700px] flex items-center justify-center mt-6 lg:mt-0">
             {/* Background Blob decoration */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-brand-pink-200/40 rounded-full mix-blend-multiply filter blur-[80px] opacity-70 animate-blob pointer-events-none"></div>
             
@@ -79,14 +79,14 @@ export default async function HomePage() {
             </div>
 
             {/* Floating Glassmorphism Element extracted from the "vibe" */}
-            <div className="absolute bottom-16 -left-8 lg:-left-16 bg-white/80 backdrop-blur-xl border border-white p-6 rounded-3xl shadow-2xl animate-bounce" style={{ animationDuration: '4s' }}>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-brand-cream flex items-center justify-center shrink-0 border border-brand-pink-100">
-                  <Star className="w-6 h-6 text-brand-pink-500 fill-brand-pink-500" />
+            <div className="absolute bottom-2 sm:bottom-16 left-2 sm:-left-8 lg:-left-16 bg-white/80 backdrop-blur-xl border border-white p-3 sm:p-6 rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl animate-bounce" style={{ animationDuration: '4s' }}>
+              <div className="flex items-center gap-2 sm:gap-4">
+                <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-brand-cream flex items-center justify-center shrink-0 border border-brand-pink-100">
+                  <Star className="w-4 h-4 sm:w-6 sm:h-6 text-brand-pink-500 fill-brand-pink-500" />
                 </div>
                 <div>
-                  <p className="text-xs font-bold tracking-widest text-brand-charcoal uppercase mb-1">Featured</p>
-                  <p className="font-heading text-xl text-brand-charcoal">Signature Collection</p>
+                  <p className="text-[10px] sm:text-xs font-bold tracking-widest text-brand-charcoal uppercase mb-0.5 sm:mb-1">Featured</p>
+                  <p className="font-heading text-sm sm:text-xl text-brand-charcoal">Signature Collection</p>
                 </div>
               </div>
             </div>
@@ -106,10 +106,10 @@ export default async function HomePage() {
       </section>
 
       {/* Brand Story / Why Choose Us */}
-      <section className="py-24 bg-white relative">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="relative aspect-square lg:aspect-[4/5] rounded-[3rem] overflow-hidden group shadow-2xl shadow-brand-pink-100/50">
+      <section className="py-16 lg:py-24 bg-white relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16 items-center">
+            <div className="relative w-full max-w-xs sm:max-w-md mx-auto lg:max-w-none aspect-[4/5] rounded-3xl sm:rounded-[3rem] overflow-hidden group shadow-xl sm:shadow-2xl shadow-brand-pink-100/50">
               <img 
                 src="/images/philosophy.jpg" 
                 alt="Brand Story" 
@@ -121,10 +121,10 @@ export default async function HomePage() {
               <span className="text-xs font-bold tracking-[0.2em] text-brand-pink-500 uppercase mb-4 block">
                 The Philosophy
               </span>
-              <h2 className="font-heading text-4xl md:text-5xl text-brand-charcoal mb-6 leading-tight">
+              <h2 className="font-heading text-2xl sm:text-4xl md:text-5xl text-brand-charcoal mb-4 sm:mb-6 leading-tight">
                 Crafted for the Modern Woman
               </h2>
-              <p className="text-lg text-brand-charcoal/70 mb-8 font-light leading-relaxed">
+              <p className="text-sm sm:text-lg text-brand-charcoal/70 mb-6 sm:mb-8 font-light leading-relaxed">
                 At 20-July, we believe that true elegance lies in the details. Every piece in our collection is thoughtfully designed with premium materials to ensure you not only look beautiful but feel empowered.
               </p>
               
@@ -134,13 +134,13 @@ export default async function HomePage() {
                   { title: "Timeless Design", desc: "Silhouettes designed to outlast passing trends." },
                   { title: "Impeccable Fit", desc: "Tailored to celebrate your natural shape with comfort in mind." }
                 ].map((feature, idx) => (
-                  <div key={idx} className="flex gap-4 items-start">
-                    <div className="w-12 h-12 rounded-full bg-brand-pink-50 flex items-center justify-center shrink-0 border border-brand-pink-100">
-                      <Star className="w-5 h-5 text-brand-pink-500" />
+                  <div key={idx} className="flex gap-3 sm:gap-4 items-start">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-brand-pink-50 flex items-center justify-center shrink-0 border border-brand-pink-100">
+                      <Star className="w-4 h-4 sm:w-5 sm:h-5 text-brand-pink-500" />
                     </div>
                     <div>
-                      <h4 className="font-heading text-xl text-brand-charcoal mb-1">{feature.title}</h4>
-                      <p className="text-sm text-brand-charcoal/60 font-light">{feature.desc}</p>
+                      <h4 className="font-heading text-lg sm:text-xl text-brand-charcoal mb-1">{feature.title}</h4>
+                      <p className="text-xs sm:text-sm text-brand-charcoal/60 font-light">{feature.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -152,21 +152,21 @@ export default async function HomePage() {
 
       {/* Shop by Category */}
       {categories.length > 0 && (
-        <section className="py-24 bg-brand-offwhite">
-          <div className="max-w-7xl mx-auto px-6">
+        <section className="py-16 lg:py-24 bg-brand-offwhite">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
               <div>
-                <h2 className="font-heading text-4xl md:text-5xl text-brand-charcoal mb-4">Curated Categories</h2>
+                <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl text-brand-charcoal mb-4">Curated Categories</h2>
                 <p className="text-brand-charcoal/60 max-w-xl text-lg font-light">Find exactly what you're looking for by browsing our carefully organized collections.</p>
               </div>
               <Link href="/shop" className="group inline-flex items-center gap-2 text-sm font-bold tracking-widest uppercase text-brand-charcoal hover:text-brand-pink-500 transition-colors">
-                View All <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <span>View All</span> <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="flex overflow-x-auto gap-4 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-6 pb-6 -mx-4 px-4 sm:mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] snap-x snap-mandatory">
               {categories.map((category, idx) => (
-                <Link href={`/shop?category=${category.slug}`} key={category.id} className="group relative h-[400px] rounded-3xl overflow-hidden block shadow-lg shadow-brand-charcoal/5">
+                <Link href={`/shop?category=${category.slug}`} key={category.id} className="group relative h-[250px] sm:h-[300px] md:h-[400px] min-w-[200px] sm:min-w-[240px] md:min-w-0 rounded-2xl sm:rounded-3xl overflow-hidden block shadow-lg shadow-brand-charcoal/5 shrink-0 snap-start">
                   <div className="absolute inset-0 bg-black/10 z-10 group-hover:bg-black/20 transition-colors duration-500"></div>
                   <img 
                     src={category.imageUrl || '/images/philosophy.jpg'}
@@ -186,13 +186,13 @@ export default async function HomePage() {
       )}
 
       {/* Featured Products */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="py-16 lg:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
             <span className="text-xs font-bold tracking-[0.2em] text-brand-pink-500 uppercase mb-4 block">
               Trending Now
             </span>
-            <h2 className="font-heading text-4xl md:text-5xl text-brand-charcoal mb-4">Featured Highlights</h2>
+            <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl text-brand-charcoal mb-4">Featured Highlights</h2>
             <div className="w-24 h-1 bg-gradient-to-r from-brand-pink-300 to-brand-purple-300 mx-auto rounded-full"></div>
           </div>
 
@@ -201,14 +201,14 @@ export default async function HomePage() {
               <p className="text-brand-charcoal/50 italic text-lg">New collections arriving soon.</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+            <div className="flex overflow-x-auto gap-6 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-10 pb-8 -mx-4 px-4 sm:mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] snap-x snap-mandatory">
               {featuredProducts.map((product, idx) => (
                 <div 
                   key={product.id} 
-                  className="group flex flex-col relative animate-fade-in-up"
+                  className="group flex flex-col relative animate-fade-in-up min-w-[240px] sm:min-w-[280px] md:min-w-0 shrink-0 snap-start"
                   style={{ animationDelay: `${idx * 150}ms` }}
                 >
-                  <Link href={`/shop/${product.slug}`} className="block relative bg-brand-offwhite rounded-[2rem] p-6 h-[400px] mb-6 overflow-hidden border border-brand-pink-50 transition-all duration-500 hover:shadow-2xl hover:shadow-brand-pink-100/60 hover:border-brand-pink-200">
+                  <Link href={`/shop/${product.slug}`} className="block relative bg-brand-offwhite rounded-2xl sm:rounded-[2rem] p-4 sm:p-6 h-[280px] sm:h-[300px] md:h-[400px] mb-4 sm:mb-6 overflow-hidden border border-brand-pink-50 transition-all duration-500 hover:shadow-2xl hover:shadow-brand-pink-100/60 hover:border-brand-pink-200">
                     {product.imageUrl && (
                       <div className="absolute inset-0 z-0">
                         <img src={product.imageUrl} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" />
@@ -229,8 +229,8 @@ export default async function HomePage() {
                     <ShoppingBag className="w-5 h-5" />
                   </button>
 
-                  <div className="text-center px-4">
-                    <h3 className="font-heading text-2xl text-brand-charcoal mb-2 hover:text-brand-pink-600 transition-colors">
+                  <div className="text-center px-2 sm:px-4">
+                    <h3 className="font-heading text-lg sm:text-2xl text-brand-charcoal mb-2 hover:text-brand-pink-600 transition-colors">
                       <Link href={`/shop/${product.slug}`}>{product.name}</Link>
                     </h3>
                     <div className="w-8 h-px bg-brand-pink-200 mx-auto mb-3"></div>
@@ -243,7 +243,7 @@ export default async function HomePage() {
           <div className="text-center mt-20">
             <Link 
               href="/shop" 
-              className="inline-flex items-center justify-center px-10 py-4 border border-brand-charcoal text-brand-charcoal rounded-full font-medium tracking-wide hover:bg-brand-charcoal hover:text-white transition-all duration-300 group"
+              className="inline-flex items-center justify-center px-8 py-3 sm:px-10 sm:py-4 border border-brand-charcoal text-brand-charcoal rounded-full text-sm sm:text-base font-medium tracking-wide hover:bg-brand-charcoal hover:text-white transition-all duration-300 group"
             >
               View All Products
             </Link>

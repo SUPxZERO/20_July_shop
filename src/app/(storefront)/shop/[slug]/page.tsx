@@ -22,9 +22,9 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
 
   return (
     <div className="bg-brand-offwhite min-h-screen pt-32 pb-12">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Breadcrumbs */}
-        <nav className="flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-brand-charcoal/50 mb-12">
+        <nav className="flex flex-wrap items-center gap-2 text-xs font-bold tracking-widest uppercase text-brand-charcoal/50 mb-8 md:mb-12">
           <Link href="/" className="hover:text-brand-pink-500 transition-colors">Home</Link>
           <ChevronRight className="w-3 h-3" />
           <Link href="/shop" className="hover:text-brand-pink-500 transition-colors">Collection</Link>
@@ -63,7 +63,7 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
             <span className="text-[10px] font-bold tracking-[0.3em] text-brand-pink-500 uppercase mb-4 block">
               {product.category.name}
             </span>
-            <h1 className="font-heading text-4xl md:text-6xl text-brand-charcoal mb-6 leading-[1.1] tracking-tight">
+            <h1 className="font-heading text-3xl sm:text-4xl md:text-6xl text-brand-charcoal mb-4 md:mb-6 leading-[1.1] tracking-tight">
               {product.name}
             </h1>
             
@@ -123,7 +123,7 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
             </div>
 
             {/* CTA */}
-            <div className="bg-white p-8 rounded-3xl border border-brand-pink-100 shadow-xl shadow-brand-pink-50/50 relative overflow-hidden">
+            <div className="bg-white p-6 sm:p-8 rounded-3xl border border-brand-pink-100 shadow-xl shadow-brand-pink-50/50 relative overflow-hidden">
               <div className="absolute -top-10 -right-10 w-40 h-40 bg-brand-pink-100 rounded-full blur-3xl opacity-50"></div>
               <h3 className="font-heading text-2xl text-brand-charcoal mb-3 relative z-10">Interested in this piece?</h3>
               <p className="text-brand-charcoal/60 mb-8 font-light relative z-10">
@@ -131,7 +131,7 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
               </p>
               <Link 
                 href="/contact" 
-                className="w-full relative z-10 inline-flex items-center justify-center gap-3 px-8 py-5 bg-brand-charcoal text-white rounded-full font-medium tracking-widest uppercase hover:bg-black transition-all duration-300 shadow-xl shadow-brand-charcoal/20 hover:shadow-brand-charcoal/40 hover:-translate-y-1"
+                className="w-full relative z-10 inline-flex items-center justify-center gap-2 sm:gap-3 px-6 py-4 sm:px-8 sm:py-5 bg-brand-charcoal text-white rounded-full font-medium tracking-widest uppercase hover:bg-black transition-all duration-300 shadow-xl shadow-brand-charcoal/20 hover:shadow-brand-charcoal/40 hover:-translate-y-1 text-sm sm:text-base"
               >
                 <MessageCircle className="w-5 h-5" /> Inquire Now
               </Link>

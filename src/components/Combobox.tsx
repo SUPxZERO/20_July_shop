@@ -34,11 +34,11 @@ export function Combobox({ label, options, value, onChange, placeholder = "Selec
   const selectedOption = options.find(opt => opt.value === value);
 
   return (
-    <div className="flex flex-col gap-1.5 w-full sm:w-auto min-w-[200px] relative" ref={containerRef}>
+    <div className="flex flex-col gap-1 sm:gap-1.5 min-w-[120px] sm:min-w-[200px] shrink-0 relative" ref={containerRef}>
       <label className="text-xs font-bold tracking-widest text-brand-charcoal uppercase">{label}</label>
       
       <div 
-        className="relative cursor-pointer w-full px-4 py-2.5 rounded-xl border border-brand-pink-200 bg-brand-offwhite text-brand-charcoal focus-within:ring-2 focus-within:ring-brand-pink-300 text-sm flex items-center justify-between shadow-sm transition-all hover:bg-white"
+        className="relative cursor-pointer w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg sm:rounded-xl border border-brand-pink-200 bg-brand-offwhite text-brand-charcoal focus-within:ring-2 focus-within:ring-brand-pink-300 text-xs sm:text-sm flex items-center justify-between shadow-sm transition-all hover:bg-white"
         onClick={() => setIsOpen(!isOpen)}
       >
         <span className={selectedOption ? 'text-brand-charcoal font-medium' : 'text-brand-charcoal/50'}>

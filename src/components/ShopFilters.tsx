@@ -42,7 +42,7 @@ export function ShopFilters({ categories, sizes, colors, materials }: ShopFilter
   const hasActiveFilters = currentCategory || currentSize || currentColor || currentMaterial;
 
   return (
-    <div className="flex flex-wrap gap-4 mb-12 items-center p-6 bg-white rounded-3xl border border-brand-pink-100 shadow-sm relative z-20">
+    <div className="flex flex-nowrap overflow-x-auto gap-2 sm:gap-4 mb-4 sm:mb-12 items-center p-3 sm:p-6 bg-white rounded-2xl sm:rounded-3xl border border-brand-pink-100 shadow-sm relative z-20 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
       
       <Combobox 
         label="Category" 
@@ -84,12 +84,12 @@ export function ShopFilters({ categories, sizes, colors, materials }: ShopFilter
 
       {/* Clear Filters Button */}
       {hasActiveFilters && (
-        <div className="flex flex-col gap-1.5 w-full sm:w-auto self-end sm:ml-auto">
+        <div className="flex flex-col gap-1.5 w-auto shrink-0 ml-auto">
           <button
             onClick={() => router.push('/shop')}
-            className="px-6 py-2.5 rounded-xl text-sm font-medium bg-brand-charcoal text-white hover:bg-black transition-colors h-[42px] flex items-center justify-center shadow-md shadow-brand-charcoal/20"
+            className="px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-medium bg-brand-charcoal text-white hover:bg-black transition-colors h-[36px] sm:h-[42px] flex items-center justify-center shadow-md shadow-brand-charcoal/20"
           >
-            Clear Filters
+            <span>Clear Filters</span>
           </button>
         </div>
       )}

@@ -78,7 +78,7 @@ export function Pagination({ totalPages, currentPage }: PaginationProps) {
                   : 'text-brand-charcoal hover:bg-brand-pink-50 hover:text-brand-pink-600'
               }`}
             >
-              {page}
+              <span>{page}</span>
             </Link>
           );
         })}
