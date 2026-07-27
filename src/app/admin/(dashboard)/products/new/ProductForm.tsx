@@ -68,7 +68,7 @@ export default function ProductForm({ categories, initialData }: { categories: C
             <label htmlFor="slug" className="text-sm font-medium text-brand-charcoal/80 ml-1">Slug (URL friendly)</label>
             <input type="text" id="slug" name="slug" defaultValue={initialData?.slug} required className="w-full px-4 py-3 rounded-2xl border border-brand-pink-100 bg-white/50 focus:bg-white focus:ring-2 focus:ring-brand-pink-400 outline-none transition-all" placeholder="e.g., silk-evening-gown" />
           </div>
-          <div className="space-y-1.5 md:col-span-2">
+          <div className="space-y-1.5">
             <label htmlFor="categoryId" className="text-sm font-medium text-brand-charcoal/80 ml-1">Category</label>
             <select id="categoryId" name="categoryId" defaultValue={initialData?.categoryId} required className="w-full px-4 py-3 rounded-2xl border border-brand-pink-100 bg-white/50 focus:bg-white focus:ring-2 focus:ring-brand-pink-400 outline-none transition-all">
               <option value="">Select a category...</option>
@@ -76,6 +76,21 @@ export default function ProductForm({ categories, initialData }: { categories: C
                 <option key={c.id} value={c.id}>{c.name}</option>
               ))}
             </select>
+          </div>
+          <div className="space-y-1.5">
+            <label htmlFor="image" className="text-sm font-medium text-brand-charcoal/80 ml-1">
+              Product Image {initialData && <span className="text-brand-charcoal/40 text-xs">(Leave blank to keep current)</span>}
+            </label>
+            <input
+              type="file"
+              id="image"
+              name="image"
+              accept="image/*"
+              className="w-full px-4 py-[9px] rounded-2xl border border-brand-pink-100 bg-white/50 focus:bg-white
+                         focus:outline-none focus:ring-2 focus:ring-brand-pink-400 transition-all text-sm
+                         file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold
+                         file:bg-brand-pink-50 file:text-brand-pink-600 hover:file:bg-brand-pink-100 cursor-pointer"
+            />
           </div>
           <div className="space-y-1.5 md:col-span-2">
             <label htmlFor="description" className="text-sm font-medium text-brand-charcoal/80 ml-1">Description</label>

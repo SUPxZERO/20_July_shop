@@ -4,6 +4,19 @@ import { prisma } from '@/lib/prisma';
 import { verifySession } from '@/lib/dal';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import { writeFile } from 'fs/promises';
+import { join } from 'path';
+
+async function uploadImage(imageFile: File | null): Promise<string | undefined> {
+  if (!imageFile || imageFile.size === 0) return undefined;
+  
+  const buffer = Buffer.from(await imageFile.arrayBuffer());
+  const filename = `${Date.now()}-${imageFile.name.replace(/\s+/g, '-')}`;
+  const path = join(process.cwd(), 'public', 'images', filename);
+  
+  await writeFile(path, buffer);
+  return `/images/${filename}`;
+}
 
 export async function createProduct(formData: FormData) {
   await verifySession();
@@ -21,6 +34,9 @@ export async function createProduct(formData: FormData) {
   const colors = formData.getAll('color[]') as string[];
   const materials = formData.getAll('material[]') as string[];
   const inStocks = formData.getAll('inStock[]') as string[];
+  const imageFile = formData.get('image') as File | null;
+
+  const imageUrl = await uploadImage(imageFile);
 
   await prisma.product.create({
     data: {
@@ -28,6 +44,7 @@ export async function createProduct(formData: FormData) {
       slug,
       categoryId,
       description,
+      ...(imageUrl && { imageUrl }),
       variants: {
         create: sizes.map((size, index) => ({
           size: size || null,
@@ -61,6 +78,9 @@ export async function updateProduct(id: string, formData: FormData) {
   const colors = formData.getAll('color[]') as string[];
   const materials = formData.getAll('material[]') as string[];
   const inStocks = formData.getAll('inStock[]') as string[];
+  const imageFile = formData.get('image') as File | null;
+
+  const newImageUrl = await uploadImage(imageFile);
 
   // Update base product
   await prisma.product.update({
@@ -70,6 +90,7 @@ export async function updateProduct(id: string, formData: FormData) {
       slug,
       categoryId,
       description,
+      ...(newImageUrl && { imageUrl: newImageUrl }),
     },
   });
 

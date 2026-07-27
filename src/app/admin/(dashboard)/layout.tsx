@@ -17,18 +17,16 @@ export default function AdminLayout({
 
       {/* Sidebar */}
       <aside className="w-[280px] bg-white/60 backdrop-blur-2xl border-r border-white/50 flex flex-col shadow-[4px_0_24px_rgba(0,0,0,0.02)] z-10 relative">
-        <div className="p-8 pb-4">
-          <Link href="/admin" className="block text-center group cursor-pointer">
-            <h2 className="font-heading text-3xl text-brand-charcoal tracking-wide transition-transform group-hover:scale-105">
-              20-July
-            </h2>
-            <p className="text-center text-brand-pink-500 font-heading text-[10px] tracking-[0.3em] uppercase mt-1">
+        <div className="p-8 pb-6">
+          <Link href="/admin" className="flex flex-col items-center group cursor-pointer">
+            <img src="/brand/logos/logo-hollow.png" alt="20-July" className="h-12 w-auto mb-3 opacity-90 group-hover:opacity-100 transition-opacity" />
+            <p className="text-center text-brand-pink-500 font-bold text-[10px] tracking-[0.3em] uppercase">
               Admin Portal
             </p>
           </Link>
         </div>
 
-        <div className="px-6 py-4">
+        <div className="px-6 py-2">
           <div className="h-px w-full bg-gradient-to-r from-transparent via-brand-pink-200/50 to-transparent" />
         </div>
 

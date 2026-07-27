@@ -17,53 +17,91 @@ export default async function HomePage() {
 
   return (
     <div className="overflow-hidden">
-      {/* Dynamic Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center bg-brand-cream overflow-hidden">
-        {/* Parallax / Animated Decorative Background */}
-        <div className="absolute inset-0 w-full h-full pointer-events-none">
-          <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-brand-pink-200/50 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob"></div>
-          <div className="absolute top-40 -left-40 w-[600px] h-[600px] bg-brand-purple-200/50 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob animation-delay-2000"></div>
-          <div className="absolute -bottom-40 left-1/4 w-[600px] h-[600px] bg-brand-gold-200/50 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob animation-delay-4000"></div>
-          {/* Subtle noise texture */}
-          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] mix-blend-overlay"></div>
-        </div>
+      <section className="relative min-h-[90vh] pt-32 pb-16 lg:pt-0 lg:pb-0 flex items-center bg-brand-cream overflow-hidden">
+        {/* Subtle noise texture */}
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] mix-blend-overlay pointer-events-none"></div>
+        
+        <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+          
+          {/* Left Column: Text Content */}
+          <div className="flex flex-col items-start text-left max-w-xl">
+            <div className="inline-flex items-center gap-3 py-2 px-5 mb-8 rounded-full bg-white/60 border border-brand-pink-200 backdrop-blur-md shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-brand-pink-500 animate-pulse"></span>
+              <span className="text-[10px] font-bold tracking-[0.2em] text-brand-pink-600 uppercase">
+                Timeless Elegance
+              </span>
+            </div>
+            
+            <h1 className="font-heading text-6xl md:text-7xl lg:text-8xl text-brand-charcoal mb-6 leading-[1.05] tracking-tight">
+              Elegance in <br />
+              <span className="text-brand-pink-500 italic relative inline-block mt-2">
+                Every Thread
+                <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 100 20" preserveAspectRatio="none">
+                  <path d="M0,10 Q50,20 100,10" fill="none" stroke="currentColor" strokeWidth="4" className="text-brand-pink-200"/>
+                </svg>
+              </span>
+            </h1>
+            
+            <p className="text-lg md:text-xl text-brand-charcoal/70 mb-10 font-light leading-relaxed">
+              Discover a curated collection of premium women's fashion designed to elevate your everyday style with effortless sophistication.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+              <Link 
+                href="/shop" 
+                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand-charcoal text-white rounded-full font-medium tracking-wide hover:bg-black transition-all duration-500 shadow-2xl shadow-brand-charcoal/20 hover:shadow-brand-charcoal/40 hover:-translate-y-1"
+              >
+                Explore Collection 
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link 
+                href="/shop?category=dresses" 
+                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white/50 backdrop-blur-md border border-brand-pink-200 text-brand-charcoal rounded-full font-medium tracking-wide hover:bg-white hover:border-brand-pink-300 transition-all duration-300"
+              >
+                Shop Dresses
+              </Link>
+            </div>
+          </div>
 
-        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto flex flex-col items-center">
-          <span className="inline-block py-1.5 px-4 mb-6 rounded-full bg-white/50 border border-brand-pink-200 backdrop-blur-md text-xs font-bold tracking-[0.2em] text-brand-pink-600 uppercase shadow-sm">
-            New Summer Collection
-          </span>
-          <h1 className="font-heading text-6xl md:text-8xl text-brand-charcoal mb-6 leading-[1.1] tracking-tight">
-            Elegance in Every <span className="text-brand-pink-500 italic relative inline-block">
-              Thread
-              <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 100 20" preserveAspectRatio="none">
-                <path d="M0,10 Q50,20 100,10" fill="none" stroke="currentColor" strokeWidth="4" className="text-brand-pink-200"/>
-              </svg>
-            </span>
-          </h1>
-          <p className="text-lg md:text-2xl text-brand-charcoal/70 mb-10 font-light leading-relaxed max-w-2xl mx-auto">
-            Discover a curated collection of premium women's fashion designed to elevate your everyday style.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
-            <Link 
-              href="/shop" 
-              className="group inline-flex items-center gap-3 px-8 py-4 bg-brand-charcoal text-white rounded-full font-medium tracking-wide hover:bg-black transition-all duration-500 shadow-2xl shadow-brand-charcoal/20 hover:shadow-brand-charcoal/40 hover:-translate-y-1"
-            >
-              Explore Collection 
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <Link 
-              href="/shop?category=dresses" 
-              className="inline-flex items-center gap-3 px-8 py-4 bg-white/50 backdrop-blur-md border border-brand-pink-100 text-brand-charcoal rounded-full font-medium tracking-wide hover:bg-white hover:border-brand-pink-300 transition-all duration-300"
-            >
-              Shop Dresses
-            </Link>
+          {/* Right Column: Stylized Image Component */}
+          <div className="relative w-full h-[600px] lg:h-[700px] flex items-center justify-center">
+            {/* Background Blob decoration */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-brand-pink-200/40 rounded-full mix-blend-multiply filter blur-[80px] opacity-70 animate-blob pointer-events-none"></div>
+            
+            {/* Main Cover Image inside an elegant arch shape */}
+            <div className="relative w-[90%] max-w-[450px] h-[90%] rounded-t-[10rem] rounded-b-[2rem] overflow-hidden shadow-2xl shadow-brand-pink-200/50 border-8 border-white/50 bg-white">
+              <img 
+                src="/brand/covers/hero_no_text.png" 
+                alt="Latest Collection" 
+                className="w-full h-full object-cover object-center scale-105 hover:scale-110 transition-transform duration-1000"
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20"></div>
+            </div>
+
+            {/* Floating Glassmorphism Element extracted from the "vibe" */}
+            <div className="absolute bottom-16 -left-8 lg:-left-16 bg-white/80 backdrop-blur-xl border border-white p-6 rounded-3xl shadow-2xl animate-bounce" style={{ animationDuration: '4s' }}>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-brand-cream flex items-center justify-center shrink-0 border border-brand-pink-100">
+                  <Star className="w-6 h-6 text-brand-pink-500 fill-brand-pink-500" />
+                </div>
+                <div>
+                  <p className="text-xs font-bold tracking-widest text-brand-charcoal uppercase mb-1">Featured</p>
+                  <p className="font-heading text-xl text-brand-charcoal">Signature Collection</p>
+                </div>
+              </div>
+            </div>
+            
+            {/* Decorative Logo Overlay */}
+            <div className="absolute top-10 right-0 lg:-right-8 opacity-20 w-32 h-32 pointer-events-none mix-blend-overlay">
+               <img src="/brand/logos/logo-hollow.svg" alt="" className="w-full h-full object-contain rotate-12" />
+            </div>
           </div>
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 lg:hidden">
           <span className="text-[10px] uppercase tracking-[0.2em] text-brand-charcoal/40">Scroll</span>
-          <div className="w-px h-12 bg-gradient-to-b from-brand-charcoal/40 to-transparent"></div>
+          <div className="w-px h-8 bg-gradient-to-b from-brand-charcoal/40 to-transparent"></div>
         </div>
       </section>
 

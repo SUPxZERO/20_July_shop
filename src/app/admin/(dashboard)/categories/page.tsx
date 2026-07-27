@@ -43,72 +43,77 @@ export default async function CategoriesPage({ searchParams }: AdminCategoriesPa
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Categories List */}
-        <div className="lg:col-span-2 bg-white/70 backdrop-blur-xl rounded-3xl shadow-sm border border-white overflow-hidden">
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="bg-brand-pink-50/50 text-brand-charcoal/50 text-xs uppercase tracking-widest">
-                <th className="px-6 py-4 font-semibold">Name</th>
-                <th className="px-6 py-4 font-semibold">Image</th>
-                <th className="px-6 py-4 font-semibold">Slug</th>
-                <th className="px-6 py-4 font-semibold">Description</th>
-                <th className="px-6 py-4 font-semibold text-right">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {categories.length === 0 ? (
-                <tr>
-                  <td colSpan={4} className="px-6 py-12 text-center text-brand-charcoal/50">
-                    No categories found. Create one to get started.
-                  </td>
+        <div className="lg:col-span-2 bg-white/80 backdrop-blur-xl rounded-[2rem] shadow-sm border border-brand-pink-50 overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="bg-brand-pink-50/30 text-brand-charcoal/50 text-xs font-bold uppercase tracking-widest border-b border-brand-pink-50/50">
+                  <th className="px-6 py-5">Category</th>
+                  <th className="px-6 py-5">Slug</th>
+                  <th className="px-6 py-5 hidden sm:table-cell">Description</th>
+                  <th className="px-6 py-5 text-right">Actions</th>
                 </tr>
-              ) : (
-                categories.map((category) => (
-                  <tr key={category.id} className="group hover:bg-white/50 transition-colors border-b border-brand-pink-50/50 last:border-0">
-                    <td className="px-6 py-4 font-medium text-brand-charcoal">{category.name}</td>
-                    <td className="px-6 py-4">
-                      {category.imageUrl ? (
-                        <div className="w-12 h-12 rounded-lg overflow-hidden relative">
-                          <img src={category.imageUrl} alt={category.name} className="w-full h-full object-cover" />
-                        </div>
-                      ) : (
-                        <span className="text-brand-charcoal/40 text-xs">No image</span>
-                      )}
-                    </td>
-                    <td className="px-6 py-4 text-brand-charcoal/60 text-sm">{category.slug}</td>
-                    <td className="px-6 py-4 text-brand-charcoal/60 text-sm max-w-[200px] truncate">
-                      {category.description}
-                    </td>
-                    <td className="px-6 py-4 text-right">
-                      <div className="flex items-center justify-end gap-2">
-                        <Link 
-                          href={`/admin/categories/${category.id}/edit`}
-                          className="p-2.5 text-brand-charcoal/40 hover:text-brand-pink-600 hover:bg-brand-pink-50 rounded-xl transition-all duration-300" 
-                          title="Edit Category"
-                        >
-                          <Edit className="w-4 h-4" />
-                        </Link>
-                        <form action={async () => {
-                          'use server';
-                          await deleteCategory(category.id);
-                        }}>
-                          <button 
-                            type="submit" 
-                            className="p-2.5 text-brand-charcoal/40 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all duration-300" 
-                            title="Delete Category"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
-                        </form>
-                      </div>
+              </thead>
+              <tbody>
+                {categories.length === 0 ? (
+                  <tr>
+                    <td colSpan={4} className="px-6 py-16 text-center text-brand-charcoal/50">
+                      No categories found. Create one to get started.
                     </td>
                   </tr>
-                ))
-              )}
-            </tbody>
-          </table>
+                ) : (
+                  categories.map((category) => (
+                    <tr key={category.id} className="group hover:bg-white/90 transition-colors border-b border-brand-pink-50/50 last:border-0">
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-4">
+                          {category.imageUrl ? (
+                            <div className="w-12 h-12 rounded-xl overflow-hidden shrink-0 border border-brand-pink-50 shadow-sm">
+                              <img src={category.imageUrl} alt={category.name} className="w-full h-full object-cover" />
+                            </div>
+                          ) : (
+                            <div className="w-12 h-12 rounded-xl bg-brand-offwhite shrink-0 border border-brand-pink-50 flex items-center justify-center">
+                              <span className="text-brand-charcoal/20 text-[10px] uppercase font-bold">Img</span>
+                            </div>
+                          )}
+                          <span className="font-medium text-brand-charcoal group-hover:text-brand-pink-600 transition-colors">{category.name}</span>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 text-brand-charcoal/50 text-sm font-mono">{category.slug}</td>
+                      <td className="px-6 py-4 text-brand-charcoal/50 text-sm max-w-[200px] truncate hidden sm:table-cell">
+                        {category.description || '-'}
+                      </td>
+                      <td className="px-6 py-4 text-right">
+                        <div className="flex items-center justify-end gap-2">
+                          <Link 
+                            href={`/admin/categories/${category.id}/edit`}
+                            className="p-2 text-brand-charcoal/30 hover:text-brand-pink-600 hover:bg-brand-pink-50 rounded-lg transition-all duration-300" 
+                            title="Edit Category"
+                          >
+                            <Edit className="w-4 h-4" />
+                          </Link>
+                          <form action={async () => {
+                            'use server';
+                            await deleteCategory(category.id);
+                          }}>
+                            <button 
+                              type="submit" 
+                              className="p-2 text-brand-charcoal/30 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all duration-300" 
+                              title="Delete Category"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </form>
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
           
           {totalPages > 1 && (
-            <div className="p-6 border-t border-brand-pink-50/50">
+            <div className="p-6 border-t border-brand-pink-50/50 bg-white/50">
               <Pagination totalPages={totalPages} currentPage={currentPage} />
             </div>
           )}

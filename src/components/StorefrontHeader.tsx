@@ -26,13 +26,16 @@ export function StorefrontHeader() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          <Link href="/" className="flex flex-col items-center group relative z-50">
-            <span className="font-heading text-2xl text-brand-charcoal tracking-widest group-hover:text-brand-pink-500 transition-colors">
-              20-July
-            </span>
-            <span className="text-[10px] uppercase tracking-[0.3em] text-brand-pink-400 font-heading">
-              Shop
-            </span>
+          <Link href="/" className="flex items-center gap-3 group relative z-50">
+            <img src="/brand/logos/logo-hollow.png" alt="20-July Shop" className="h-12 w-auto object-contain group-hover:opacity-80 transition-opacity drop-shadow-sm" />
+            <div className="flex flex-col">
+              <span className="font-heading text-xl text-brand-charcoal tracking-widest group-hover:text-brand-pink-500 transition-colors leading-none">
+                20-July
+              </span>
+              <span className="text-[9px] uppercase tracking-[0.3em] text-brand-pink-400 font-heading mt-1">
+                Shop
+              </span>
+            </div>
           </Link>
           
           {/* Desktop Nav */}

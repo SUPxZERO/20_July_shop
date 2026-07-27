@@ -2,6 +2,7 @@ import { prisma } from '@/lib/prisma';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, MessageCircle, Ruler, Info, ShieldCheck, ChevronRight } from 'lucide-react';
+import { SizeGuideModal } from '@/components/SizeGuideModal';
 
 export default async function ProductDetailsPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
@@ -20,7 +21,7 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
   const materials = Array.from(new Set(product.variants.map(v => v.material).filter(Boolean)));
 
   return (
-    <div className="bg-brand-offwhite min-h-screen py-12">
+    <div className="bg-brand-offwhite min-h-screen pt-32 pb-12">
       <div className="max-w-7xl mx-auto px-6">
         {/* Breadcrumbs */}
         <nav className="flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-brand-charcoal/50 mb-12">
@@ -76,16 +77,14 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-xs font-bold tracking-widest text-brand-charcoal uppercase">Select Size</h3>
-                    <button className="text-xs text-brand-pink-500 hover:text-brand-pink-600 transition-colors flex items-center gap-1">
-                      <Ruler className="w-3 h-3" /> Size Guide
-                    </button>
+                    <SizeGuideModal defaultCategory={product.category.slug} />
                   </div>
                   <div className="flex flex-wrap gap-3">
                     {sizes.map(size => (
-                      <label key={size} className="cursor-pointer relative">
-                        <input type="radio" name="size" className="peer sr-only" value={size} />
+                      <label key={String(size)} className="cursor-pointer relative">
+                        <input type="radio" name="size" className="peer sr-only" value={String(size)} />
                         <span className="px-5 py-2.5 rounded-full text-sm font-medium border border-brand-pink-200 text-brand-charcoal bg-white flex items-center justify-center peer-checked:bg-brand-charcoal peer-checked:text-white peer-checked:border-brand-charcoal transition-all duration-300 hover:border-brand-charcoal">
-                          {size}
+                          {String(size)}
                         </span>
                       </label>
                     ))}
@@ -98,10 +97,10 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
                   <h3 className="text-xs font-bold tracking-widest text-brand-charcoal uppercase mb-4">Select Color</h3>
                   <div className="flex flex-wrap gap-3">
                     {colors.map(color => (
-                      <label key={color} className="cursor-pointer relative group">
-                        <input type="radio" name="color" className="peer sr-only" value={color} />
+                      <label key={String(color)} className="cursor-pointer relative group">
+                        <input type="radio" name="color" className="peer sr-only" value={String(color)} />
                         <span className="px-5 py-2.5 rounded-full text-sm font-medium border border-brand-pink-200 text-brand-charcoal bg-white flex items-center justify-center peer-checked:bg-brand-pink-500 peer-checked:text-white peer-checked:border-brand-pink-500 transition-all duration-300 hover:border-brand-pink-500 hover:text-brand-pink-500">
-                          {color}
+                          {String(color)}
                         </span>
                       </label>
                     ))}
@@ -126,9 +125,9 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
             {/* CTA */}
             <div className="bg-white p-8 rounded-3xl border border-brand-pink-100 shadow-xl shadow-brand-pink-50/50 relative overflow-hidden">
               <div className="absolute -top-10 -right-10 w-40 h-40 bg-brand-pink-100 rounded-full blur-3xl opacity-50"></div>
-              <h3 className="font-heading text-2xl text-brand-charcoal mb-3 relative z-10">Make it yours</h3>
+              <h3 className="font-heading text-2xl text-brand-charcoal mb-3 relative z-10">Interested in this piece?</h3>
               <p className="text-brand-charcoal/60 mb-8 font-light relative z-10">
-                Contact our styling team directly to check availability, fit details, and to place your order. We provide personalized service for every client.
+                Have questions about fit, availability, or want to place an order? Contact us directly and we'll be happy to assist you.
               </p>
               <Link 
                 href="/contact" 
@@ -146,7 +145,7 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
                   <ChevronRight className="w-5 h-5 text-brand-charcoal/40 group-open:rotate-90 transition-transform" />
                 </summary>
                 <div className="mt-4 text-brand-charcoal/60 font-light text-sm leading-relaxed pl-8">
-                  We offer complimentary standard shipping on all orders. Returns are accepted within 14 days of delivery for unworn items with tags attached. Custom or altered pieces are final sale.
+                  Shipping rates and delivery times are calculated at checkout. We accept returns within 3 days of delivery for unworn items in their original condition with all tags attached.
                 </div>
               </details>
               
@@ -156,7 +155,7 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
                   <ChevronRight className="w-5 h-5 text-brand-charcoal/40 group-open:rotate-90 transition-transform" />
                 </summary>
                 <div className="mt-4 text-brand-charcoal/60 font-light text-sm leading-relaxed pl-8">
-                  Dry clean only. Store in a cool, dry place away from direct sunlight. Use the provided garment bag for long-term storage to preserve the fabric's integrity.
+                  Please refer to the care label on your item for specific instructions. For most pieces, we recommend gentle washing in cold water and air drying to maintain the fabric's quality and fit.
                 </div>
               </details>
             </div>

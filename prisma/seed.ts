@@ -25,6 +25,7 @@ async function main() {
     { name: 'Accessories', slug: 'accessories', description: 'Complete your look with our handpicked scarves, bags, and jewelry.', imageUrl: '/images/accessories.jpg' },
     { name: 'Outerwear', slug: 'outerwear', description: 'Classic coats and jackets.', imageUrl: '/images/bottoms.jpg' },
     { name: 'Lingerie & Sleepwear', slug: 'sleepwear', description: 'Luxurious silk and satin sleepwear.', imageUrl: '/images/dresses.jpg' },
+    { name: 'Shoes', slug: 'shoes', description: 'Step out in style with our premium footwear collection.', imageUrl: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=800&auto=format&fit=crop' },
   ];
 
   const categories: Record<string, string> = {};
@@ -199,6 +200,36 @@ async function main() {
       name: 'Corduroy Flared Pants', slug: 'corduroy-flared-pants', description: '70s inspired high-waisted corduroy pants.',
       imageUrl: '/images/wide_leg_trousers.png', categoryId: categories['skirts-pants'], featured: false,
       variants: [{ size: '28', color: 'Rust', sku: 'CRD-1' }]
+    },
+    {
+      name: 'Classic White Sneakers', slug: 'classic-white-sneakers', description: 'Minimalist leather sneakers for everyday wear.',
+      imageUrl: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=800&auto=format&fit=crop', categoryId: categories['shoes'], featured: true,
+      variants: [{ size: '37', color: 'White', sku: 'SNK-1' }, { size: '38', color: 'White', sku: 'SNK-2' }, { size: '39', color: 'White', sku: 'SNK-3' }]
+    },
+    {
+      name: 'Stiletto Ankle Boots', slug: 'stiletto-ankle-boots', description: 'Sleek pointed-toe ankle boots in smooth black leather.',
+      imageUrl: 'https://images.unsplash.com/photo-1608256246200-53e635b5b65f?q=80&w=800&auto=format&fit=crop', categoryId: categories['shoes'], featured: false,
+      variants: [{ size: '38', color: 'Black', sku: 'BOT-1' }, { size: '39', color: 'Black', sku: 'BOT-2' }]
+    },
+    {
+      name: 'Leather Loafers', slug: 'leather-loafers', description: 'Timeless slip-on loafers with gold hardware.',
+      imageUrl: 'https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=800&auto=format&fit=crop', categoryId: categories['shoes'], featured: true,
+      variants: [{ size: '37', color: 'Brown', sku: 'LOA-1' }, { size: '40', color: 'Brown', sku: 'LOA-2' }]
+    },
+    {
+      name: 'Oversized Cat-Eye Sunglasses', slug: 'oversized-cat-eye-sunglasses', description: 'Statement sunglasses with UV protection.',
+      imageUrl: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=800&auto=format&fit=crop', categoryId: categories['accessories'], featured: true,
+      variants: [{ size: 'One Size', color: 'Black', sku: 'SUN-2' }]
+    },
+    {
+      name: 'Cashmere Blend Scarf', slug: 'cashmere-blend-scarf', description: 'Ultra-soft oversized scarf perfect for chilly days.',
+      imageUrl: 'https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?q=80&w=800&auto=format&fit=crop', categoryId: categories['accessories'], featured: false,
+      variants: [{ size: 'One Size', color: 'Grey', sku: 'SCRF-1' }]
+    },
+    {
+      name: 'Pearl Embellished Belt', slug: 'pearl-embellished-belt', description: 'Thin waist belt adorned with faux pearls.',
+      imageUrl: 'https://images.unsplash.com/photo-1628149462157-5e933f48a97e?q=80&w=800&auto=format&fit=crop', categoryId: categories['accessories'], featured: false,
+      variants: [{ size: 'S', color: 'Gold/White', sku: 'BLT-1' }, { size: 'M', color: 'Gold/White', sku: 'BLT-2' }]
     }
   ];
 

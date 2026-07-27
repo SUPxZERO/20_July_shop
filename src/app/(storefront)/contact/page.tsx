@@ -1,28 +1,43 @@
 'use client';
 
 import Link from 'next/link';
-import { Send, MapPin, Mail, Phone, MessageSquare, ChevronDown } from 'lucide-react';
-import { useState } from 'react';
+import { Send, MapPin, Mail, Phone, MessageSquare, ChevronDown, CheckCircle2 } from 'lucide-react';
+import { useState, useTransition } from 'react';
+import { sendTelegramMessage } from './actions';
 
 export default function ContactPage() {
   const [activeFaq, setActiveFaq] = useState<number | null>(0);
+  const [isPending, startTransition] = useTransition();
+  const [status, setStatus] = useState<{ type: 'success' | 'error' | null, message: string }>({ type: null, message: '' });
+
+  async function handleAction(formData: FormData) {
+    setStatus({ type: null, message: '' });
+    startTransition(async () => {
+      const result = await sendTelegramMessage(formData);
+      if (result.success) {
+        setStatus({ type: 'success', message: 'Message sent successfully! We will get back to you soon.' });
+      } else {
+        setStatus({ type: 'error', message: result.error || 'Something went wrong.' });
+      }
+    });
+  }
 
   const faqs = [
     {
       q: "How long does shipping take?",
-      a: "Standard shipping typically takes 3-5 business days within the domestic US. International shipping can take 7-14 business days. Expedited options are available at checkout."
+      a: "Standard delivery typically takes 1-2 business days within Phnom Penh. Deliveries to other provinces in Cambodia may take 2-4 business days."
     },
     {
       q: "What is your return policy?",
-      a: "We accept returns within 14 days of delivery for unworn items with all original tags attached. Custom pieces and sale items are final sale."
+      a: "We accept returns within 3 days of delivery for unworn items with all original tags attached. Sale items are final sale."
     },
     {
       q: "Do you offer custom sizing?",
-      a: "Yes, we offer custom sizing for select pieces. Please reach out to our team using the contact form below with your measurements, and we will guide you through the process."
+      a: "No, we currently do not offer custom sizing. All of our pieces are available in standard sizes."
     },
     {
       q: "How can I track my order?",
-      a: "Once your order has shipped, you will receive an email with a tracking number and a link to monitor its progress."
+      a: "We don't use automated tracking numbers. To check the status of your order, please reach out to us directly via Messenger, Telegram, or phone call!"
     }
   ];
 
@@ -57,56 +72,77 @@ export default function ContactPage() {
               <div className="space-y-6 mb-12">
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 rounded-full bg-brand-pink-50 flex items-center justify-center shrink-0 text-brand-pink-500">
+                    <Phone className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold tracking-widest text-brand-charcoal uppercase mb-1">Call Us / WhatsApp</p>
+                    <a href="tel:+855973008594" className="text-brand-charcoal/60 font-light text-lg hover:text-brand-pink-600 transition-colors block">
+                      +855 97 300 8594
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-full bg-brand-pink-50 flex items-center justify-center shrink-0 text-brand-pink-500">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
                     <p className="text-sm font-bold tracking-widest text-brand-charcoal uppercase mb-1">Email Us</p>
-                    <p className="text-brand-charcoal/60 font-light text-lg">hello@20julyshop.com</p>
+                    <a href="mailto:thearasreynuth@gmail.com" className="text-brand-charcoal/60 font-light text-lg hover:text-brand-pink-600 transition-colors block">
+                      thearasreynuth@gmail.com
+                    </a>
                   </div>
                 </div>
                 
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 rounded-full bg-brand-pink-50 flex items-center justify-center shrink-0 text-brand-pink-500">
-                    <Phone className="w-5 h-5" />
+                    <MessageSquare className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="text-sm font-bold tracking-widest text-brand-charcoal uppercase mb-1">Call Us</p>
-                    <p className="text-brand-charcoal/60 font-light text-lg">+1 (555) 123-4567</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-full bg-brand-pink-50 flex items-center justify-center shrink-0 text-brand-pink-500">
-                    <MapPin className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold tracking-widest text-brand-charcoal uppercase mb-1">Visit Us</p>
-                    <p className="text-brand-charcoal/60 font-light text-lg">123 Fashion Avenue<br/>New York, NY 10012</p>
+                    <p className="text-sm font-bold tracking-widest text-brand-charcoal uppercase mb-1">Telegram Chat</p>
+                    <a href="https://t.me/+855973008594" target="_blank" rel="noopener noreferrer" className="text-brand-charcoal/60 font-light text-lg hover:text-brand-pink-600 transition-colors block">
+                      +855 97 300 8594
+                    </a>
                   </div>
                 </div>
               </div>
 
               <h3 className="font-heading text-2xl text-brand-charcoal mb-6 border-t border-brand-pink-50 pt-8">Social Channels</h3>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <a 
-                  href="https://facebook.com" 
+                  href="https://www.facebook.com/share/19D6MFPvDg/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="group flex flex-col items-center justify-center p-6 bg-brand-offwhite rounded-2xl border border-brand-pink-50 hover:border-[#1877F2] hover:bg-[#1877F2]/5 transition-all duration-300"
+                  className="group flex items-center gap-4 p-4 bg-brand-offwhite rounded-2xl border border-brand-pink-50 hover:border-[#1877F2] hover:bg-[#1877F2]/5 transition-all duration-300"
                 >
-                  <svg className="w-8 h-8 mb-3 text-brand-charcoal/40 group-hover:text-[#1877F2] transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-6 h-6 text-brand-charcoal/40 group-hover:text-[#1877F2] transition-colors" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                   </svg>
                   <span className="font-medium text-sm text-brand-charcoal group-hover:text-[#1877F2] transition-colors">Facebook</span>
                 </a>
+                
                 <a 
-                  href="https://tiktok.com" 
+                  href="https://www.tiktok.com/@20julyshop2?_r=1&_t=ZS-98MJlGMwiEi" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="group flex flex-col items-center justify-center p-6 bg-brand-offwhite rounded-2xl border border-brand-pink-50 hover:border-black hover:bg-black/5 transition-all duration-300"
+                  className="group flex items-center gap-4 p-4 bg-brand-offwhite rounded-2xl border border-brand-pink-50 hover:border-black hover:bg-black/5 transition-all duration-300"
                 >
-                  <MessageSquare className="w-8 h-8 mb-3 text-brand-charcoal/40 group-hover:text-black transition-colors" />
+                  <svg className="w-6 h-6 text-brand-charcoal/40 group-hover:text-black transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                  </svg>
                   <span className="font-medium text-sm text-brand-charcoal group-hover:text-black transition-colors">TikTok</span>
+                </a>
+
+                <a 
+                  href="https://t.me/SreynuthTheara02" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-4 p-4 bg-brand-offwhite rounded-2xl border border-brand-pink-50 hover:border-[#0088cc] hover:bg-[#0088cc]/5 transition-all duration-300 sm:col-span-2"
+                >
+                  <svg className="w-6 h-6 text-brand-charcoal/40 group-hover:text-[#0088cc] transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.04.01.24 0 .24z"/>
+                  </svg>
+                  <span className="font-medium text-sm text-brand-charcoal group-hover:text-[#0088cc] transition-colors">Telegram Channel</span>
                 </a>
               </div>
             </div>
@@ -114,66 +150,105 @@ export default function ContactPage() {
 
           {/* Contact Form */}
           <div className="lg:col-span-7">
-            <div className="bg-white p-8 md:p-12 rounded-[2rem] shadow-xl shadow-brand-pink-100/50 border border-brand-pink-100">
-              <h3 className="font-heading text-3xl text-brand-charcoal mb-2">Send a Message</h3>
-              <p className="text-brand-charcoal/60 font-light mb-8">We aim to respond to all inquiries within 24 hours.</p>
-              
-              <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label htmlFor="name" className="text-sm font-bold tracking-widest text-brand-charcoal uppercase">Full Name</label>
-                    <input 
-                      type="text" 
-                      id="name" 
-                      placeholder="Jane Doe"
-                      className="w-full bg-brand-offwhite border border-brand-pink-50 rounded-xl px-5 py-4 text-brand-charcoal placeholder:text-brand-charcoal/30 focus:outline-none focus:border-brand-pink-400 focus:ring-1 focus:ring-brand-pink-400 transition-all"
-                    />
+            <div className="bg-white p-8 md:p-12 rounded-[2rem] shadow-xl shadow-brand-pink-100/50 border border-brand-pink-100 h-full flex flex-col justify-center">
+              {status.type === 'success' ? (
+                <div className="text-center space-y-4">
+                  <div className="w-20 h-20 bg-brand-pink-50 rounded-full flex items-center justify-center mx-auto text-brand-pink-500 mb-6">
+                    <CheckCircle2 className="w-10 h-10" />
                   </div>
-                  <div className="space-y-2">
-                    <label htmlFor="email" className="text-sm font-bold tracking-widest text-brand-charcoal uppercase">Email Address</label>
-                    <input 
-                      type="email" 
-                      id="email" 
-                      placeholder="jane@example.com"
-                      className="w-full bg-brand-offwhite border border-brand-pink-50 rounded-xl px-5 py-4 text-brand-charcoal placeholder:text-brand-charcoal/30 focus:outline-none focus:border-brand-pink-400 focus:ring-1 focus:ring-brand-pink-400 transition-all"
-                    />
-                  </div>
+                  <h3 className="font-heading text-4xl text-brand-charcoal">Message Sent!</h3>
+                  <p className="text-brand-charcoal/60 font-light text-lg max-w-md mx-auto">
+                    {status.message}
+                  </p>
+                  <button 
+                    onClick={() => setStatus({ type: null, message: '' })}
+                    className="mt-8 px-8 py-4 bg-brand-charcoal text-white rounded-xl font-medium tracking-widest uppercase hover:bg-brand-pink-600 transition-all duration-300"
+                  >
+                    Send Another Message
+                  </button>
                 </div>
+              ) : (
+                <>
+                  <h3 className="font-heading text-3xl text-brand-charcoal mb-2">Send a Message</h3>
+                  <p className="text-brand-charcoal/60 font-light mb-8">We aim to respond to all inquiries within 24 hours.</p>
+                  
+                  {status.type === 'error' && (
+                    <div className="mb-6 p-4 bg-red-50 text-red-600 border border-red-100 rounded-xl text-sm">
+                      {status.message}
+                    </div>
+                  )}
+                  
+                  <form className="space-y-6" action={handleAction}>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label htmlFor="name" className="text-sm font-bold tracking-widest text-brand-charcoal uppercase">Full Name</label>
+                        <input 
+                          type="text" 
+                          id="name" 
+                          name="name"
+                          required
+                          placeholder="Jane Doe"
+                          className="w-full bg-brand-offwhite border border-brand-pink-50 rounded-xl px-5 py-4 text-brand-charcoal placeholder:text-brand-charcoal/30 focus:outline-none focus:border-brand-pink-400 focus:ring-1 focus:ring-brand-pink-400 transition-all"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label htmlFor="email" className="text-sm font-bold tracking-widest text-brand-charcoal uppercase">Email Address</label>
+                        <input 
+                          type="email" 
+                          id="email" 
+                          name="email"
+                          required
+                          placeholder="jane@example.com"
+                          className="w-full bg-brand-offwhite border border-brand-pink-50 rounded-xl px-5 py-4 text-brand-charcoal placeholder:text-brand-charcoal/30 focus:outline-none focus:border-brand-pink-400 focus:ring-1 focus:ring-brand-pink-400 transition-all"
+                        />
+                      </div>
+                    </div>
 
-                <div className="space-y-2">
-                  <label htmlFor="subject" className="text-sm font-bold tracking-widest text-brand-charcoal uppercase">Subject</label>
-                  <div className="relative">
-                    <select 
-                      id="subject"
-                      className="w-full bg-brand-offwhite border border-brand-pink-50 rounded-xl px-5 py-4 text-brand-charcoal appearance-none focus:outline-none focus:border-brand-pink-400 focus:ring-1 focus:ring-brand-pink-400 transition-all"
+                    <div className="space-y-2">
+                      <label htmlFor="subject" className="text-sm font-bold tracking-widest text-brand-charcoal uppercase">Subject</label>
+                      <div className="relative">
+                        <select 
+                          id="subject"
+                          name="subject"
+                          className="w-full bg-brand-offwhite border border-brand-pink-50 rounded-xl px-5 py-4 text-brand-charcoal appearance-none focus:outline-none focus:border-brand-pink-400 focus:ring-1 focus:ring-brand-pink-400 transition-all"
+                        >
+                          <option value="General Inquiry">General Inquiry</option>
+                          <option value="Order Inquiry">Order Inquiry</option>
+                          <option value="Sizing & Fit">Sizing & Fit</option>
+                          <option value="Returns & Exchanges">Returns & Exchanges</option>
+                          <option value="Other">Other</option>
+                        </select>
+                        <ChevronDown className="absolute right-5 top-1/2 -translate-y-1/2 w-5 h-5 text-brand-charcoal/40 pointer-events-none" />
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <label htmlFor="message" className="text-sm font-bold tracking-widest text-brand-charcoal uppercase">Message</label>
+                      <textarea 
+                        id="message" 
+                        name="message"
+                        required
+                        rows={6}
+                        placeholder="How can we help you?"
+                        className="w-full bg-brand-offwhite border border-brand-pink-50 rounded-xl px-5 py-4 text-brand-charcoal placeholder:text-brand-charcoal/30 focus:outline-none focus:border-brand-pink-400 focus:ring-1 focus:ring-brand-pink-400 transition-all resize-none"
+                      ></textarea>
+                    </div>
+
+                    <button 
+                      type="submit" 
+                      disabled={isPending}
+                      className="w-full inline-flex items-center justify-center gap-3 px-8 py-5 bg-brand-charcoal text-white rounded-xl font-medium tracking-widest uppercase hover:bg-brand-pink-600 transition-all duration-300 shadow-lg shadow-brand-charcoal/20 hover:shadow-brand-pink-500/30 disabled:opacity-70 disabled:cursor-not-allowed"
                     >
-                      <option value="">Select a subject</option>
-                      <option value="order">Order Inquiry</option>
-                      <option value="sizing">Sizing & Fit</option>
-                      <option value="returns">Returns & Exchanges</option>
-                      <option value="other">Other</option>
-                    </select>
-                    <ChevronDown className="absolute right-5 top-1/2 -translate-y-1/2 w-5 h-5 text-brand-charcoal/40 pointer-events-none" />
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <label htmlFor="message" className="text-sm font-bold tracking-widest text-brand-charcoal uppercase">Message</label>
-                  <textarea 
-                    id="message" 
-                    rows={6}
-                    placeholder="How can we help you?"
-                    className="w-full bg-brand-offwhite border border-brand-pink-50 rounded-xl px-5 py-4 text-brand-charcoal placeholder:text-brand-charcoal/30 focus:outline-none focus:border-brand-pink-400 focus:ring-1 focus:ring-brand-pink-400 transition-all resize-none"
-                  ></textarea>
-                </div>
-
-                <button 
-                  type="submit" 
-                  className="w-full inline-flex items-center justify-center gap-3 px-8 py-5 bg-brand-charcoal text-white rounded-xl font-medium tracking-widest uppercase hover:bg-brand-pink-600 transition-all duration-300 shadow-lg shadow-brand-charcoal/20 hover:shadow-brand-pink-500/30"
-                >
-                  <Send className="w-5 h-5" /> Send Message
-                </button>
-              </form>
+                      {isPending ? (
+                        <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                      ) : (
+                        <Send className="w-5 h-5" /> 
+                      )}
+                      {isPending ? 'Sending...' : 'Send Message'}
+                    </button>
+                  </form>
+                </>
+              )}
             </div>
           </div>
         </div>
