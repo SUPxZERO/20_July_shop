@@ -1,8 +1,9 @@
 'use client';
 
-import Link from 'next/link';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { Link, usePathname } from '@/i18n/routing';
+import { useSearchParams } from 'next/navigation';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 interface PaginationProps {
   totalPages: number;
@@ -10,6 +11,7 @@ interface PaginationProps {
 }
 
 export function Pagination({ totalPages, currentPage }: PaginationProps) {
+  const t = useTranslations('Pagination');
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -51,7 +53,7 @@ export function Pagination({ totalPages, currentPage }: PaginationProps) {
             ? 'text-brand-charcoal hover:bg-brand-pink-50 hover:text-brand-pink-600'
             : 'text-brand-charcoal/20 pointer-events-none'
         }`}
-        aria-label="Previous Page"
+        aria-label={t('PreviousPage')}
       >
         <ChevronLeft className="w-5 h-5" />
       </Link>
@@ -92,7 +94,7 @@ export function Pagination({ totalPages, currentPage }: PaginationProps) {
             ? 'text-brand-charcoal hover:bg-brand-pink-50 hover:text-brand-pink-600'
             : 'text-brand-charcoal/20 pointer-events-none'
         }`}
-        aria-label="Next Page"
+        aria-label={t('NextPage')}
       >
         <ChevronRight className="w-5 h-5" />
       </Link>

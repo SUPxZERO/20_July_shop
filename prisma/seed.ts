@@ -9,7 +9,7 @@ const prisma = new PrismaClient({ adapter });
 async function main() {
   console.log('🌱 Seeding database with massive premium catalog...');
 
-  const adminEmail = [EMAIL_ADDRESS]';
+  const adminEmail = 'admin@example.com';
   const adminPasswordRaw = 'admin123';
   const hashedPassword = await bcrypt.hash(adminPasswordRaw, 12);
   await prisma.adminUser.upsert({

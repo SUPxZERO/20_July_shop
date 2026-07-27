@@ -1,11 +1,13 @@
 'use client';
 
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
+import { useTranslations } from 'next-intl';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { useState, useTransition } from 'react';
 import { subscribeNewsletter } from './actions';
 
 export function StorefrontFooter() {
+  const t = useTranslations('Footer');
   const [isPending, startTransition] = useTransition();
   const [status, setStatus] = useState<{ type: 'success' | 'error' | null, message: string }>({ type: null, message: '' });
 
@@ -39,27 +41,27 @@ export function StorefrontFooter() {
               </div>
             </Link>
             <p className="text-sm text-brand-offwhite/60 leading-relaxed font-light">
-              Elegance in every thread. Discover our curated collection of premium women's fashion designed to elevate your everyday style.
+              {t('Description')}
             </p>
           </div>
           
           {/* Links Col */}
           <div>
-            <h4 className="font-heading text-base md:text-lg mb-3 md:mb-6 text-white tracking-wide">Quick Links</h4>
+            <h4 className="font-heading text-base md:text-lg mb-3 md:mb-6 text-white tracking-wide">{t('QuickLinks')}</h4>
             <ul className="space-y-2 text-sm font-light text-brand-offwhite/60">
               <li>
                 <Link href="/shop" className="hover:text-brand-pink-400 transition-colors inline-flex items-center gap-2 group">
-                  <span className="w-0 h-px bg-brand-pink-400 group-hover:w-3 transition-all duration-300"></span> <span>Shop All</span>
+                  <span className="w-0 h-px bg-brand-pink-400 group-hover:w-3 transition-all duration-300"></span> <span>{t('ShopAll')}</span>
                 </Link>
               </li>
               <li>
                 <Link href="/contact" className="hover:text-brand-pink-400 transition-colors inline-flex items-center gap-2 group">
-                  <span className="w-0 h-px bg-brand-pink-400 group-hover:w-3 transition-all duration-300"></span> <span>Contact Us</span>
+                  <span className="w-0 h-px bg-brand-pink-400 group-hover:w-3 transition-all duration-300"></span> <span>{t('ContactUs')}</span>
                 </Link>
               </li>
               <li>
                 <Link href="/contact" className="hover:text-brand-pink-400 transition-colors inline-flex items-center gap-2 group">
-                  <span className="w-0 h-px bg-brand-pink-400 group-hover:w-3 transition-all duration-300"></span> <span>FAQ</span>
+                  <span className="w-0 h-px bg-brand-pink-400 group-hover:w-3 transition-all duration-300"></span> <span>{t('FAQ')}</span>
                 </Link>
               </li>
             </ul>
@@ -67,21 +69,21 @@ export function StorefrontFooter() {
           
           {/* Socials Col */}
           <div>
-            <h4 className="font-heading text-base md:text-lg mb-3 md:mb-6 text-white tracking-wide">Connect</h4>
+            <h4 className="font-heading text-base md:text-lg mb-3 md:mb-6 text-white tracking-wide">{t('Connect')}</h4>
             <ul className="space-y-2 text-sm font-light text-brand-offwhite/60">
               <li>
                 <a href="https://t.me/SreynuthTheara02" target="_blank" rel="noopener noreferrer" className="hover:text-brand-pink-400 transition-colors inline-flex items-center gap-2 group">
-                  <span className="w-0 h-px bg-brand-pink-400 group-hover:w-3 transition-all duration-300"></span> <span>Telegram</span>
+                  <span className="w-0 h-px bg-brand-pink-400 group-hover:w-3 transition-all duration-300"></span> <span>{t('Telegram')}</span>
                 </a>
               </li>
               <li>
                 <a href="https://www.tiktok.com/@20julyshop2?_r=1&_t=ZS-98MJlGMwiEi" target="_blank" rel="noopener noreferrer" className="hover:text-brand-pink-400 transition-colors inline-flex items-center gap-2 group">
-                  <span className="w-0 h-px bg-brand-pink-400 group-hover:w-3 transition-all duration-300"></span> <span>TikTok</span>
+                  <span className="w-0 h-px bg-brand-pink-400 group-hover:w-3 transition-all duration-300"></span> <span>{t('TikTok')}</span>
                 </a>
               </li>
               <li>
                 <a href="https://www.facebook.com/share/19D6MFPvDg/" target="_blank" rel="noopener noreferrer" className="hover:text-brand-pink-400 transition-colors inline-flex items-center gap-2 group">
-                  <span className="w-0 h-px bg-brand-pink-400 group-hover:w-3 transition-all duration-300"></span> <span>Facebook</span>
+                  <span className="w-0 h-px bg-brand-pink-400 group-hover:w-3 transition-all duration-300"></span> <span>{t('Facebook')}</span>
                 </a>
               </li>
             </ul>
@@ -89,9 +91,9 @@ export function StorefrontFooter() {
 
           {/* Newsletter Col */}
           <div className="lg:col-span-1">
-            <h4 className="font-heading text-base md:text-lg mb-3 md:mb-6 text-white tracking-wide">Newsletter</h4>
+            <h4 className="font-heading text-base md:text-lg mb-3 md:mb-6 text-white tracking-wide">{t('Newsletter')}</h4>
             <p className="text-xs sm:text-sm text-brand-offwhite/60 leading-relaxed font-light mb-4">
-              Subscribe to receive updates, access to exclusive deals, and more.
+              {t('NewsletterDesc')}
             </p>
             {status.type === 'success' ? (
               <div className="flex items-center gap-2 text-brand-pink-400 text-sm mt-4">
@@ -103,14 +105,14 @@ export function StorefrontFooter() {
                   type="email"
                   name="email"
                   required
-                  placeholder="Enter your email address" 
+                  placeholder={t('EmailPlaceholder')}
                   className="w-full bg-white/5 border border-white/10 rounded-full px-4 md:px-5 py-2.5 md:py-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-brand-pink-500 transition-colors"
                 />
                 <button 
-                  type="submit" 
+                  type="submit"
                   disabled={isPending}
                   className="absolute right-1 top-1 bottom-1 bg-brand-pink-500 hover:bg-brand-pink-400 text-white rounded-full w-10 flex items-center justify-center transition-colors disabled:opacity-50"
-                  aria-label="Subscribe"
+                  aria-label={t('AriaSubscribe')}
                 >
                   {isPending ? (
                     <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
@@ -127,10 +129,10 @@ export function StorefrontFooter() {
         </div>
         
         <div className="pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-3 text-[10px] sm:text-xs font-light text-brand-offwhite/40 tracking-wider">
-          <p>&copy; {new Date().getFullYear()} 20-July Shop. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} 20-July Shop. {t('AllRightsReserved')}</p>
           <div className="flex gap-4">
-            <Link href="/" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="/" className="hover:text-white transition-colors">Terms of Service</Link>
+            <Link href="/" className="hover:text-white transition-colors">{t('PrivacyPolicy')}</Link>
+            <Link href="/" className="hover:text-white transition-colors">{t('TermsOfService')}</Link>
           </div>
         </div>
       </div>

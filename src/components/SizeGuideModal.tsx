@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { Ruler, X, Shirt, Footprints, Watch } from "lucide-react";
-import Link from "next/link";
+import { Link } from '@/i18n/routing';
+import { useTranslations } from 'next-intl';
 
 type Tab = 'clothing' | 'shoes' | 'accessories';
 
@@ -13,6 +14,7 @@ export function SizeGuideModal({ defaultCategory = 'clothing' }: { defaultCatego
     return 'clothing';
   };
 
+  const t = useTranslations('SizeGuide');
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<Tab>(getInitialTab());
 
@@ -34,7 +36,7 @@ export function SizeGuideModal({ defaultCategory = 'clothing' }: { defaultCatego
         onClick={() => setIsOpen(true)}
         className="text-xs text-brand-pink-500 hover:text-brand-pink-600 transition-colors flex items-center gap-1 font-medium"
       >
-        <Ruler className="w-3 h-3" /> Size Guide
+        <Ruler className="w-3 h-3" /> <span>{t('SizeGuide')}</span>
       </button>
 
       {isOpen && (
@@ -55,9 +57,9 @@ export function SizeGuideModal({ defaultCategory = 'clothing' }: { defaultCatego
                 <div className="w-16 h-16 bg-brand-pink-50 rounded-2xl flex items-center justify-center mx-auto mb-6 rotate-3">
                   <Ruler className="w-8 h-8 text-brand-pink-500 -rotate-3" />
                 </div>
-                <h2 className="font-heading text-3xl text-brand-charcoal mb-3">Size Guide</h2>
+                <h2 className="font-heading text-3xl text-brand-charcoal mb-3">{t('SizeGuide')}</h2>
                 <p className="text-brand-charcoal/60 text-sm font-light">
-                  Find your perfect fit across all our collections.
+                  {t('SizeGuideDesc')}
                 </p>
               </div>
 
@@ -67,19 +69,19 @@ export function SizeGuideModal({ defaultCategory = 'clothing' }: { defaultCatego
                   onClick={() => setActiveTab('clothing')}
                   className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-medium transition-all ${activeTab === 'clothing' ? 'bg-white text-brand-charcoal shadow-sm' : 'text-brand-charcoal/50 hover:text-brand-charcoal hover:bg-brand-pink-50'}`}
                 >
-                  <Shirt className="w-4 h-4" /> Clothing
+                  <Shirt className="w-4 h-4" /> <span>{t('Clothing')}</span>
                 </button>
                 <button 
                   onClick={() => setActiveTab('shoes')}
                   className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-medium transition-all ${activeTab === 'shoes' ? 'bg-white text-brand-charcoal shadow-sm' : 'text-brand-charcoal/50 hover:text-brand-charcoal hover:bg-brand-pink-50'}`}
                 >
-                  <Footprints className="w-4 h-4" /> Shoes
+                  <Footprints className="w-4 h-4" /> <span>{t('Shoes')}</span>
                 </button>
                 <button 
                   onClick={() => setActiveTab('accessories')}
                   className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-medium transition-all ${activeTab === 'accessories' ? 'bg-white text-brand-charcoal shadow-sm' : 'text-brand-charcoal/50 hover:text-brand-charcoal hover:bg-brand-pink-50'}`}
                 >
-                  <Watch className="w-4 h-4" /> Accessories
+                  <Watch className="w-4 h-4" /> <span>{t('Accessories')}</span>
                 </button>
               </div>
 
@@ -89,10 +91,10 @@ export function SizeGuideModal({ defaultCategory = 'clothing' }: { defaultCatego
                   <table className="w-full text-sm text-left">
                     <thead className="bg-brand-pink-50/50 text-brand-charcoal uppercase text-xs font-bold tracking-widest">
                       <tr>
-                        <th className="px-6 py-5 font-bold">Size</th>
-                        <th className="px-6 py-5 font-bold">Bust (cm)</th>
-                        <th className="px-6 py-5 font-bold">Waist (cm)</th>
-                        <th className="px-6 py-5 font-bold">Hips (cm)</th>
+                        <th className="px-6 py-5 font-bold">{t('Size')}</th>
+                        <th className="px-6 py-5 font-bold">{t('Bust')}</th>
+                        <th className="px-6 py-5 font-bold">{t('Waist')}</th>
+                        <th className="px-6 py-5 font-bold">{t('Hips')}</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-brand-pink-50">
@@ -137,10 +139,10 @@ export function SizeGuideModal({ defaultCategory = 'clothing' }: { defaultCatego
                   <table className="w-full text-sm text-left">
                     <thead className="bg-brand-pink-50/50 text-brand-charcoal uppercase text-xs font-bold tracking-widest">
                       <tr>
-                        <th className="px-6 py-5 font-bold">EU</th>
-                        <th className="px-6 py-5 font-bold">US (Women)</th>
-                        <th className="px-6 py-5 font-bold">UK</th>
-                        <th className="px-6 py-5 font-bold">Length (cm)</th>
+                        <th className="px-6 py-5 font-bold">{t('EU')}</th>
+                        <th className="px-6 py-5 font-bold">{t('US')}</th>
+                        <th className="px-6 py-5 font-bold">{t('UK')}</th>
+                        <th className="px-6 py-5 font-bold">{t('Length')}</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-brand-pink-50">
@@ -191,19 +193,19 @@ export function SizeGuideModal({ defaultCategory = 'clothing' }: { defaultCatego
                   <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm border border-brand-pink-50">
                     <Watch className="w-5 h-5 text-brand-pink-500" />
                   </div>
-                  <h3 className="font-heading text-xl text-brand-charcoal mb-2">Accessories Sizing</h3>
+                  <h3 className="font-heading text-xl text-brand-charcoal mb-2">{t('AccessoriesSizing')}</h3>
                   <p className="text-brand-charcoal/70 font-light text-sm max-w-md mx-auto leading-relaxed">
-                    Most of our accessories (such as bags, scarves, and sunglasses) are <strong>One Size Fits All</strong>. 
+                    <span dangerouslySetInnerHTML={{ __html: t.raw('AccessoriesDesc1') }} />
                     <br/><br/>
-                    For specific measurements of an accessory, please refer to the product description details on the item's page.
+                    {t('AccessoriesDesc2')}
                   </p>
                 </div>
               )}
               
               <div className="mt-8 text-center text-sm text-brand-charcoal/60 font-light py-4">
-                Need more help finding your size?{' '}
+                {t('NeedMoreHelp')}
                 <Link href="/contact" className="text-brand-pink-500 font-medium hover:text-brand-pink-600 transition-colors underline underline-offset-4">
-                  Contact us
+                  {t('ContactUs')}
                 </Link>
               </div>
             </div>

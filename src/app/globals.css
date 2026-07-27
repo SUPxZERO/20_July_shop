@@ -33,8 +33,8 @@
   --color-brand-charcoal: #2D2D2D;
 
   /* Typography */
-  --font-heading: "Playfair Display", Georgia, serif;
-  --font-body:    "Inter", system-ui, sans-serif;
+  --font-heading: var(--font-playfair), var(--font-suwannaphum), Georgia, serif;
+  --font-body:    var(--font-inter), var(--font-kantumruy), system-ui, sans-serif;
 }
 
 /* ─── Base Styles ──────────────────────────────────────────────────── */

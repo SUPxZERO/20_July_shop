@@ -1,10 +1,13 @@
 'use client';
 
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
+import { useTranslations } from 'next-intl';
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import LanguageSwitcher from './LanguageSwitcher';
 
 export function StorefrontHeader() {
+  const t = useTranslations('Header');
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -41,9 +44,9 @@ export function StorefrontHeader() {
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-10">
             {[
-              { label: 'Home', href: '/' },
-              { label: 'Collection', href: '/shop' },
-              { label: 'Contact', href: '/contact' },
+              { label: t('Home'), href: '/' },
+              { label: t('Collection'), href: '/shop' },
+              { label: t('Contact'), href: '/contact' },
             ].map((link) => (
               <Link 
                 key={link.label}
@@ -54,13 +57,16 @@ export function StorefrontHeader() {
                 <span className="absolute -bottom-1 left-0 w-0 h-px bg-brand-pink-400 transition-all duration-300 group-hover:w-full"></span>
               </Link>
             ))}
+            <div className="pl-4 border-l border-brand-pink-100/50 flex items-center h-4">
+              <LanguageSwitcher />
+            </div>
           </nav>
 
           {/* Mobile Menu Button */}
           <button 
             className="md:hidden p-2 -mr-2 text-brand-charcoal relative z-50"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle Menu"
+            aria-label={t('AriaToggleMenu')}
           >
             {isMobileMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
           </button>
@@ -78,9 +84,9 @@ export function StorefrontHeader() {
         
         <nav className="flex flex-col w-full gap-2 relative z-10 mt-4">
           {[
-            { label: 'Home', href: '/' },
-            { label: 'Collection', href: '/shop' },
-            { label: 'Contact', href: '/contact' },
+            { label: t('Home'), href: '/' },
+            { label: t('Collection'), href: '/shop' },
+            { label: t('Contact'), href: '/contact' },
           ].map((link, idx) => (
             <Link 
               key={link.label}
@@ -94,9 +100,13 @@ export function StorefrontHeader() {
           ))}
         </nav>
         
+        <div className="mt-8 flex justify-center z-10 border-t border-brand-pink-100/40 pt-8">
+           <LanguageSwitcher />
+        </div>
+        
         <div className="mt-auto mb-8 relative z-10 flex flex-col items-center opacity-60">
           <p className="text-[10px] tracking-[0.3em] uppercase font-bold text-brand-charcoal mb-2">20-July Shop</p>
-          <p className="text-xs font-light text-brand-charcoal">Elegance in every thread</p>
+          <p className="text-xs font-light text-brand-charcoal">{t('Elegance')}</p>
         </div>
       </div>
     </>

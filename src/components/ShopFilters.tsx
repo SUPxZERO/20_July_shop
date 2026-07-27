@@ -1,7 +1,9 @@
 'use client';
 
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter, usePathname } from '@/i18n/routing';
+import { useSearchParams } from 'next/navigation';
 import { useCallback } from 'react';
+import { useTranslations } from 'next-intl';
 import { Combobox } from './Combobox';
 
 interface ShopFiltersProps {
@@ -12,6 +14,7 @@ interface ShopFiltersProps {
 }
 
 export function ShopFilters({ categories, sizes, colors, materials }: ShopFiltersProps) {
+  const t = useTranslations('ShopFilters');
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -45,40 +48,40 @@ export function ShopFilters({ categories, sizes, colors, materials }: ShopFilter
     <div className="flex flex-nowrap overflow-x-auto gap-2 sm:gap-4 mb-4 sm:mb-12 items-center p-3 sm:p-6 bg-white rounded-2xl sm:rounded-3xl border border-brand-pink-100 shadow-sm relative z-20 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
       
       <Combobox 
-        label="Category" 
+        label={t('Category')} 
         options={categoryOptions} 
         value={currentCategory} 
         onChange={(val) => router.push(`/shop?${createQueryString('category', val)}`)} 
-        placeholder="Any Category"
+        placeholder={t('AnyCategory')}
       />
 
       {sizeOptions.length > 0 && (
         <Combobox 
-          label="Size" 
+          label={t('Size')} 
           options={sizeOptions} 
           value={currentSize} 
           onChange={(val) => router.push(`/shop?${createQueryString('size', val)}`)} 
-          placeholder="Any Size"
+          placeholder={t('AnySize')}
         />
       )}
 
       {colorOptions.length > 0 && (
         <Combobox 
-          label="Color" 
+          label={t('Color')} 
           options={colorOptions} 
           value={currentColor} 
           onChange={(val) => router.push(`/shop?${createQueryString('color', val)}`)} 
-          placeholder="Any Color"
+          placeholder={t('AnyColor')}
         />
       )}
 
       {materialOptions.length > 0 && (
         <Combobox 
-          label="Material" 
+          label={t('Material')} 
           options={materialOptions} 
           value={currentMaterial} 
           onChange={(val) => router.push(`/shop?${createQueryString('material', val)}`)} 
-          placeholder="Any Material"
+          placeholder={t('AnyMaterial')}
         />
       )}
 
@@ -89,7 +92,7 @@ export function ShopFilters({ categories, sizes, colors, materials }: ShopFilter
             onClick={() => router.push('/shop')}
             className="px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-medium bg-brand-charcoal text-white hover:bg-black transition-colors h-[36px] sm:h-[42px] flex items-center justify-center shadow-md shadow-brand-charcoal/20"
           >
-            <span>Clear Filters</span>
+            <span>{t('ClearFilters')}</span>
           </button>
         </div>
       )}

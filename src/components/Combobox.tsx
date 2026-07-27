@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { ChevronDown, Search, Check } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 interface ComboboxProps {
   label: string;
@@ -12,6 +13,7 @@ interface ComboboxProps {
 }
 
 export function Combobox({ label, options, value, onChange, placeholder = "Select..." }: ComboboxProps) {
+  const t = useTranslations('Combobox');
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
   const containerRef = useRef<HTMLDivElement>(null);
@@ -71,10 +73,10 @@ export function Combobox({ label, options, value, onChange, placeholder = "Selec
                 setQuery('');
               }}
             >
-              Any {label}
+              <span>{t('Any', { label })}</span>
             </li>
             {filteredOptions.length === 0 ? (
-              <li className="px-4 py-4 text-sm text-brand-charcoal/40 text-center">No matches found</li>
+              <li className="px-4 py-4 text-sm text-brand-charcoal/40 text-center"><span>{t('NoMatchesFound')}</span></li>
             ) : (
               filteredOptions.map((option) => (
                 <li 
@@ -86,7 +88,7 @@ export function Combobox({ label, options, value, onChange, placeholder = "Selec
                     setQuery('');
                   }}
                 >
-                  {option.label}
+                  <span>{option.label}</span>
                   {value === option.value && <Check className="w-4 h-4 text-brand-pink-500" />}
                 </li>
               ))
