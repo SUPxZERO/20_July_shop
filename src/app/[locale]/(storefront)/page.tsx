@@ -20,45 +20,45 @@ export default async function HomePage() {
 
   return (
     <div className="overflow-hidden">
-      <section className="relative min-h-[90vh] pt-32 pb-16 lg:pt-0 lg:pb-0 flex items-center bg-brand-cream overflow-hidden">
+      <section className="relative min-h-[90vh] pt-32 pb-16 lg:pt-12 lg:pb-12 flex items-center bg-brand-cream overflow-hidden">
         {/* Subtle noise texture */}
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] mix-blend-overlay pointer-events-none"></div>
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center relative z-10">
-          
+
           {/* Left Column: Text Content */}
           <div className="flex flex-col items-start text-left max-w-xl">
-            <div className="inline-flex items-center gap-2 sm:gap-3 py-1.5 px-4 sm:py-2 sm:px-5 mb-6 sm:mb-8 rounded-full bg-white/60 border border-brand-pink-200 backdrop-blur-md shadow-sm">
+            <div className="inline-flex items-center gap-2 sm:gap-3 py-2 px-4 sm:py-2.5 sm:px-5 mb-6 sm:mb-8 rounded-full bg-white/60 border border-brand-pink-200 backdrop-blur-md shadow-sm">
               <span className="w-2 h-2 rounded-full bg-brand-pink-500 animate-pulse"></span>
-              <span className="text-[10px] font-bold tracking-[0.2em] text-brand-pink-600 uppercase">
+              <span className="text-[10px] sm:text-xs leading-normal font-bold tracking-[0.2em] text-brand-pink-600 uppercase pb-0.5">
                 {t('TimelessElegance')}
               </span>
             </div>
-            
-            <h1 className="font-heading text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-brand-charcoal mb-4 sm:mb-6 leading-[1.05] tracking-tight">
+
+            <h1 className="font-heading font-normal text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-brand-charcoal mb-4 sm:mb-6 leading-[1.3] md:leading-[1.4] tracking-tight">
               {t('EleganceIn')} <br />
-              <span className="text-brand-pink-500 italic relative inline-block mt-2">
+              <span className="text-brand-pink-500 italic relative inline-block mt-4 lg:mt-6 pb-2">
                 <span>{t('EveryThread')}</span>
-                <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 100 20" preserveAspectRatio="none">
-                  <path d="M0,10 Q50,20 100,10" fill="none" stroke="currentColor" strokeWidth="4" className="text-brand-pink-200"/>
+                <svg className="absolute -bottom-4 md:-bottom-8 left-0 w-full" viewBox="0 0 100 20" preserveAspectRatio="none">
+                  <path d="M0,10 Q50,20 100,10" fill="none" stroke="currentColor" strokeWidth="4" className="text-brand-pink-200" />
                 </svg>
               </span>
             </h1>
-            
+
             <p className="text-sm sm:text-lg md:text-xl text-brand-charcoal/70 mb-6 sm:mb-10 font-light leading-relaxed">
               {t('HeroDesc')}
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
-              <Link 
-                href="/shop" 
+              <Link
+                href="/shop"
                 className="group inline-flex items-center justify-center gap-2 sm:gap-3 px-6 py-3 sm:px-8 sm:py-4 bg-brand-charcoal text-white rounded-full text-sm sm:text-base font-medium tracking-wide hover:bg-black transition-all duration-500 shadow-xl sm:shadow-2xl shadow-brand-charcoal/20 hover:shadow-brand-charcoal/40 hover:-translate-y-1"
               >
-                <span>{t('ExploreCollection')}</span> 
+                <span>{t('ExploreCollection')}</span>
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
-              <Link 
-                href="/shop?category=dresses" 
+              <Link
+                href="/shop?category=dresses"
                 className="inline-flex items-center justify-center gap-2 sm:gap-3 px-6 py-3 sm:px-8 sm:py-4 bg-white/50 backdrop-blur-md border border-brand-pink-200 text-brand-charcoal rounded-full text-sm sm:text-base font-medium tracking-wide hover:bg-white hover:border-brand-pink-300 transition-all duration-300"
               >
                 <span>{t('ShopDresses')}</span>
@@ -70,12 +70,12 @@ export default async function HomePage() {
           <div className="relative w-full h-[320px] sm:h-[500px] md:h-[600px] lg:h-[700px] flex items-center justify-center mt-6 lg:mt-0">
             {/* Background Blob decoration */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-brand-pink-200/40 rounded-full mix-blend-multiply filter blur-[80px] opacity-70 animate-blob pointer-events-none"></div>
-            
+
             {/* Main Cover Image inside an elegant arch shape */}
             <div className="relative w-[90%] max-w-[450px] h-[90%] rounded-t-[10rem] rounded-b-[2rem] overflow-hidden shadow-2xl shadow-brand-pink-200/50 border-8 border-white/50 bg-white">
-              <img 
-                src="/brand/covers/hero_no_text.png" 
-                alt={t('AltLatestCollection')} 
+              <img
+                src="/brand/covers/hero_no_text.png"
+                alt={t('AltLatestCollection')}
                 className="w-full h-full object-cover object-center scale-105 hover:scale-110 transition-transform duration-1000"
               />
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20"></div>
@@ -93,10 +93,10 @@ export default async function HomePage() {
                 </div>
               </div>
             </div>
-            
+
             {/* Decorative Logo Overlay */}
             <div className="absolute top-10 right-0 lg:-right-8 opacity-20 w-32 h-32 pointer-events-none mix-blend-overlay">
-               <img src="/brand/logos/logo-hollow.svg" alt="" className="w-full h-full object-contain rotate-12" />
+              <img src="/brand/logos/logo-hollow.svg" alt="" className="w-full h-full object-contain rotate-12" />
             </div>
           </div>
         </div>
@@ -113,13 +113,13 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16 items-center">
             <div className="relative w-full max-w-xs sm:max-w-md mx-auto lg:max-w-none aspect-[4/5] rounded-3xl sm:rounded-[3rem] overflow-hidden group shadow-xl sm:shadow-2xl shadow-brand-pink-100/50">
-              <img 
-                src="/images/philosophy.jpg" 
-                alt={t('AltBrandStory')} 
+              <img
+                src="/images/philosophy.jpg"
+                alt={t('AltBrandStory')}
                 className="w-full h-full object-cover object-center scale-105 hover:scale-110 transition-transform duration-1000"
               />
             </div>
-            
+
             <div className="flex flex-col justify-center">
               <span className="text-xs font-bold tracking-[0.2em] text-brand-pink-500 uppercase mb-4 block">
                 {t('ThePhilosophy')}
@@ -130,7 +130,7 @@ export default async function HomePage() {
               <p className="text-sm sm:text-lg text-brand-charcoal/70 mb-6 sm:mb-8 font-light leading-relaxed">
                 {t('BrandStoryDesc')}
               </p>
-              
+
               <div className="space-y-6">
                 {[
                   { title: t('PremiumMaterials'), desc: t('PremiumMaterialsDesc') },
@@ -171,9 +171,9 @@ export default async function HomePage() {
               {categories.map((category, idx) => (
                 <Link href={`/shop?category=${category.slug}`} key={category.id} className="group relative h-[250px] sm:h-[300px] md:h-[400px] min-w-[200px] sm:min-w-[240px] md:min-w-0 rounded-2xl sm:rounded-3xl overflow-hidden block shadow-lg shadow-brand-charcoal/5 shrink-0 snap-start">
                   <div className="absolute inset-0 bg-black/10 z-10 group-hover:bg-black/20 transition-colors duration-500"></div>
-                  <img 
+                  <img
                     src={category.imageUrl || '/images/philosophy.jpg'}
-                    alt={category.name} 
+                    alt={category.name}
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 ease-out"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-20"></div>
@@ -206,8 +206,8 @@ export default async function HomePage() {
           ) : (
             <div className="flex overflow-x-auto gap-6 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-10 pb-8 -mx-4 px-4 sm:mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] snap-x snap-mandatory">
               {featuredProducts.map((product, idx) => (
-                <div 
-                  key={product.id} 
+                <div
+                  key={product.id}
                   className="group flex flex-col relative animate-fade-in-up min-w-[240px] sm:min-w-[280px] md:min-w-0 shrink-0 snap-start"
                   style={{ animationDelay: `${idx * 150}ms` }}
                 >
@@ -242,10 +242,10 @@ export default async function HomePage() {
               ))}
             </div>
           )}
-          
+
           <div className="text-center mt-20">
-            <Link 
-              href="/shop" 
+            <Link
+              href="/shop"
               className="inline-flex items-center justify-center px-8 py-3 sm:px-10 sm:py-4 border border-brand-charcoal text-brand-charcoal rounded-full text-sm sm:text-base font-medium tracking-wide hover:bg-brand-charcoal hover:text-white transition-all duration-300 group"
             >
               <span>{t('ViewAllProducts')}</span>
