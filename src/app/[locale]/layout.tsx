@@ -66,7 +66,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} className={`${inter.variable} ${playfair.variable} ${suwannaphum.variable} ${kantumruy.variable}`}>
-      <body className="min-h-full font-body antialiased">
+      <body className="min-h-full font-body antialiased" suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           <SessionProvider>{children}</SessionProvider>
         </NextIntlClientProvider>
