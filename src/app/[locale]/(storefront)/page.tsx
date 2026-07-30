@@ -20,7 +20,7 @@ export default async function HomePage() {
 
   return (
     <div className="overflow-hidden">
-      <section className="relative min-h-[90vh] pt-32 pb-16 lg:pt-12 lg:pb-12 flex items-center bg-brand-cream overflow-hidden">
+      <section className="relative min-h-[90vh] pt-32 pb-16 flex items-center bg-brand-cream overflow-hidden">
         {/* Subtle noise texture */}
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] mix-blend-overlay pointer-events-none"></div>
 
