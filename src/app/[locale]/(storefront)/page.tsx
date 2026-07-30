@@ -4,8 +4,8 @@ import { ArrowRight, ShoppingBag, Star } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 
 export default async function HomePage() {
-  let featuredProducts = [];
-  let categories = [];
+  let featuredProducts: any[] = [];
+  let categories: any[] = [];
   let dbError = null;
 
   try {
