@@ -4,17 +4,41 @@ import { ArrowRight, ShoppingBag, Star } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 
 export default async function HomePage() {
-  const [featuredProducts, categories] = await prisma.$transaction([
-    prisma.product.findMany({
-      where: { featured: true },
-      include: { category: true },
-      take: 6,
-      orderBy: { createdAt: 'desc' },
-    }),
-    prisma.category.findMany({
-      take: 4,
-    })
-  ]);
+  let featuredProducts = [];
+  let categories = [];
+  let dbError = null;
+
+  try {
+    const result = await prisma.$transaction([
+      prisma.product.findMany({
+        where: { featured: true },
+        include: { category: true },
+        take: 6,
+        orderBy: { createdAt: 'desc' },
+      }),
+      prisma.category.findMany({
+        take: 4,
+        orderBy: { createdAt: 'asc' },
+      }),
+    ]);
+    featuredProducts = result[0];
+    categories = result[1];
+  } catch (error: any) {
+    console.error("Database connection error:", error);
+    dbError = error.message || error.toString();
+  }
+
+  if (dbError) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-red-50 text-red-900 p-8">
+        <div className="max-w-2xl">
+          <h1 className="text-2xl font-bold mb-4">Database Connection Failed</h1>
+          <p className="mb-4">We are having trouble connecting to the database on Vercel.</p>
+          <pre className="bg-red-100 p-4 rounded overflow-auto text-sm">{dbError}</pre>
+        </div>
+      </div>
+    );
+  }
 
   const t = await getTranslations('HomePage');
 

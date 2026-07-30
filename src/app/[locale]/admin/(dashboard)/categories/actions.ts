@@ -4,19 +4,7 @@ import { prisma } from '@/lib/prisma';
 import { verifySession } from '@/lib/dal';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { writeFile } from 'fs/promises';
-import { join } from 'path';
-
-async function uploadImage(imageFile: File | null): Promise<string | undefined> {
-  if (!imageFile || imageFile.size === 0) return undefined;
-  
-  const buffer = Buffer.from(await imageFile.arrayBuffer());
-  const filename = `${Date.now()}-${imageFile.name.replace(/\s+/g, '-')}`;
-  const path = join(process.cwd(), 'public', 'images', filename);
-  
-  await writeFile(path, buffer);
-  return `/images/${filename}`;
-}
+import { uploadImage } from '@/lib/upload';
 
 export async function createCategory(formData: FormData) {
   await verifySession();
